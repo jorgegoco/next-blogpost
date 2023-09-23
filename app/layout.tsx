@@ -4,8 +4,8 @@ import Navbar from './components/Navbar'
 import MyProfilePic from './components/MyProfilePic'
 
 export const metadata: Metadata = {
-  title: 'next-blogpost',
-  description: 'Jorge blogpost with Next.js',
+  title: "Jorge's Blog",
+  description: "Jorge's blogpost with Next.js",
 }
 
 export default function RootLayout({

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { FaLinkedinIn, FaFilePdf, FaGithub, FaLaptop } from 'react-icons/fa'
 
 export default function Navbar() {
   return (
@@ -8,6 +9,20 @@ export default function Navbar() {
           <Link href="/"
             className="text-white/90 no-underline hover:text-white">Jorge Go</Link>
         </h1>
+        <div className="flex flex-row justify-center sm:justify-evenly align-middle gap-4 text-white text-4xl lg:text-5xl">
+          <Link className="text-white/90 hover:text-white" href="https://www.linkedin.com/in/jorgegoco/">
+            <FaLinkedinIn />
+          </Link>
+          <Link className="text-white/90 hover:text-white" href="https://jorgegoco.vercel.app">
+            <FaLaptop />
+          </Link>
+          <Link className="text-white/90 hover:text-white" href="https://github.com/jorgegoco">
+            <FaGithub />
+          </Link>
+          <Link className="text-white/90 hover:text-white" href="https://drive.google.com/file/d/1BA21G9CyG4bE_HGE7kjFDHijd5P_Ex4w/view?usp=sharing">
+            <FaFilePdf />
+          </Link>
+        </div>
       </div>
     </nav>
   )

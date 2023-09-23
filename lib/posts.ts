@@ -42,7 +42,7 @@ export async function getPostData(id: string) {
 
   const processedContent = await remark()
       .use(html)
-      .process(matterResult.content) as unknown as { toString(): string }
+      .process(matterResult.content) 
 
   const contentHtml = processedContent.toString()
 

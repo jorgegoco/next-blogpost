@@ -1,4 +1,7 @@
 import { compileMDX } from "next-mdx-remote/rsc";
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypeHighlight from 'rehype-highlight'
+import rehypeSlug from 'rehype-slug'
 
 type Filetree = {
   tree: [
@@ -22,11 +25,19 @@ export async function getPostByName(
     }
   );
 
-  if (!res.ok) return undefined;
+  if (!res.ok) return undefined
 
-  const rawMDX = await res.text();
+  const rawMDX = await res.text()
 
-  if (rawMDX === "404: Not Found") return undefined;
+  if (rawMDX === "404: Not Found") return undefined
+
+  const rehypePlugins: any[] = [
+    rehypeHighlight as any,
+    rehypeSlug,
+    [rehypeAutolinkHeadings, {
+      behavior: 'wrap'
+    }],
+  ];
 
   const { frontmatter, content } = await compileMDX<{
     title: string;
@@ -34,6 +45,12 @@ export async function getPostByName(
     tags: string[];
   }>({
     source: rawMDX,
+    options: {
+      parseFrontmatter: true,
+      mdxOptions: {
+        rehypePlugins,
+      },
+    }
   });
 
   const id = fileName.replace(/\.mdx$/, "");

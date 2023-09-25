@@ -10,14 +10,14 @@ type Filetree = {
     {
       path: string;
     }
-  ];
-};
+  ]
+}
 
 export async function getPostByName(
   fileName: string
 ): Promise<BlogPost | undefined> {
   const res = await fetch(
-    `https://raw.githubusercontent.com/jorgegoco/test-blogposts/main/${fileName}`,
+    `https://raw.githubusercontent.com/jorgegoco/blogposts-source/main/${fileName}`,
     {
       headers: {
         Accept: "application/vnd.github+json",
@@ -25,7 +25,7 @@ export async function getPostByName(
         "X-GitHub-Api-Version": "2022-11-28",
       },
     }
-  );
+  )
 
   if (!res.ok) return undefined
 
@@ -39,7 +39,7 @@ export async function getPostByName(
     [rehypeAutolinkHeadings, {
       behavior: 'wrap'
     }],
-  ];
+  ]
 
   const { frontmatter, content } = await compileMDX<{
     title: string;
@@ -57,9 +57,9 @@ export async function getPostByName(
         rehypePlugins,
       },
     }
-  });
+  })
 
-  const id = fileName.replace(/\.mdx$/, "");
+  const id = fileName.replace(/\.mdx$/, "")
 
   const blogPostObj: BlogPost = {
     meta: {
@@ -69,14 +69,14 @@ export async function getPostByName(
       tags: frontmatter.tags,
     },
     content,
-  };
+  }
 
-  return blogPostObj;
+  return blogPostObj
 }
 
 export async function getPostsMeta(): Promise<Meta[] | undefined> {
   const res = await fetch(
-    "https://api.github.com/repos/jorgegoco/test-blogposts/git/trees/main?recursive=1",
+    "https://api.github.com/repos/jorgegoco/blogposts-source/git/trees/main?recursive=1",
     {
       headers: {
         Accept: "application/vnd.github+json",
@@ -84,25 +84,25 @@ export async function getPostsMeta(): Promise<Meta[] | undefined> {
         "X-GitHub-Api-Version": "2022-11-28",
       },
     }
-  );
+  )
 
-  if (!res.ok) return undefined;
+  if (!res.ok) return undefined
 
-  const repoFiletree: Filetree = await res.json();
+  const repoFiletree: Filetree = await res.json()
 
   const filesArray = repoFiletree.tree
     .map((obj) => obj.path)
-    .filter((path) => path.endsWith(".mdx"));
+    .filter((path) => path.endsWith(".mdx"))
 
-  const posts: Meta[] = [];
+  const posts: Meta[] = []
 
   for (const file of filesArray) {
-    const post = await getPostByName(file);
+    const post = await getPostByName(file)
     if (post) {
-      const { meta } = post;
-      posts.push(meta);
+      const { meta } = post
+      posts.push(meta)
     }
   }
 
-  return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
+  return posts.sort((a, b) => (a.date < b.date ? 1 : -1))
 }

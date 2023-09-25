@@ -16,7 +16,7 @@
 
 # 📖 next-blogpost <a name="about-project"></a>
 
-**next-blogpost** is built with React & Next.js, TypeScript, Tailwind CSS, Vercel hosting. Takes remote MDX files from GitHub repo with its API, as Posts with images, videos and stylings as well.
+**next-blogpost** is a website that lets you write and publish blog posts using MDX, a format that combines markdown and JSX. It uses React, Next.js, TypeScript, Tailwind CSS, and Vercel hosting. It fetches MDX files from GitHub and renders them with images, videos, code snippets, and stylings.
 
 ## 🛠 Built With <a name="built-with"></a>
 

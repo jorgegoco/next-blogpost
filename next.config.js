@@ -6,7 +6,7 @@ const nextConfig = {
         protocol: "https",
         hostname: "raw.githubusercontent.com",
         port: "",
-        pathname: "/jorgegoco/test-blogposts/main/images/**",
+        pathname: "/jorgegoco/blogposts-source/main/images/**",
       },
     ],
   },

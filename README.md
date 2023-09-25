@@ -44,7 +44,7 @@
 ## 🚀 Live Demo <a name="live-demo"></a>
 
 
-- [Live Demo Link](https://jorgegoco.vercel.app/)
+- [Live Demo Link](https://jorgegoco-blogposts.vercel.app/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
